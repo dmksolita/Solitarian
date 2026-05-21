@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Articles
+description: Dispatches from the office. Mostly harmless.
+permalink: /posts/
+---
+
+<section id="content" class="main special">
+  <header class="major">
+    <h2>Articles</h2>
+    <p>Dispatches from the office. Mostly harmless.</p>
+  </header>
+
+  <ul class="features" style="text-align:left">
+    {% for item in collections.posts %}
+    <li>
+      <span class="icon solid major style1 fa-newspaper"></span>
+      <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+      <p>{{ item.data.description }}</p>
+      <p><small><time datetime="{{ item.date | isoDate }}">{{ item.date | readableDate }}</time>
+      {% if item.data.author %} &middot; {{ item.data.author }}{% endif %}</small></p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

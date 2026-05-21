@@ -1,0 +1,75 @@
+---
+layout: layouts/base.njk
+title: Canteen Menu
+description: This week's meat and vegetarian options — straight from the kitchen.
+---
+
+{% set today = "" | todayISO %}
+
+<section class="main">
+  <div class="menu-wrapper">
+
+    <header class="major">
+      <h1>Canteen Menu</h1>
+      <p>{{ description }}</p>
+    </header>
+
+    {% if menu.length %}
+    <div class="menu-grid">
+      {% for item in menu %}
+        {% set day = item.date | menuDayInfo %}
+        {% set isToday = (day.iso == today) %}
+        {% set isPast  = (day.iso < today) %}
+
+        <article class="menu-card{% if isToday %} today{% elif isPast %} past{% endif %}" aria-label="{{ day.dayName }} {{ day.displayDate }}">
+
+          <div class="menu-card-header">
+            <span class="menu-day-name">{{ day.dayName }}</span>
+            {% if isToday %}
+              <span class="menu-today-badge">Today</span>
+            {% else %}
+              <span class="menu-date">{{ day.displayDate }}</span>
+            {% endif %}
+          </div>
+
+          <div class="menu-card-body">
+
+            {# ── Meat ── #}
+            <div class="menu-dish">
+              <p class="menu-dish-label">
+                <span class="icon solid fa-drumstick-bite" aria-hidden="true"></span> Meat
+              </p>
+              <p class="menu-dish-name">{{ item.meat }}</p>
+              <img
+                class="menu-dish-img"
+                src="{{ item.meatImage }}"
+                alt="{{ item.meat }}"
+                loading="lazy"
+                onerror="this.setAttribute('data-hidden','');this.style.display='none'">
+            </div>
+
+            {# ── Vegetarian ── #}
+            <div class="menu-dish">
+              <p class="menu-dish-label">
+                <span class="icon solid fa-leaf" aria-hidden="true"></span> Vegetarian
+              </p>
+              <p class="menu-dish-name">{{ item.vegi }}</p>
+              <img
+                class="menu-dish-img"
+                src="{{ item.vegiImage }}"
+                alt="{{ item.vegi }}"
+                loading="lazy"
+                onerror="this.setAttribute('data-hidden','');this.style.display='none'">
+            </div>
+
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% else %}
+      <p class="menu-empty">No menu posted yet — check back soon. 🍴</p>
+    {% endif %}
+
+  </div>
+</section>

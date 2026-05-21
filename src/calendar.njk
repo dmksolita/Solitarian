@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+title: Calendar
+description: Upcoming events and happenings around the office.
+---
+
+{% set today = "" | todayISO %}
+{% set grids = [events | thisMonthGrid, events | nextMonthGrid] %}
+
+<section class="main">
+  <div class="cal-wrapper">
+
+    <header class="major">
+      <h1>Calendar</h1>
+      <p>{{ description }}</p>
+    </header>
+
+    {% for grid in grids %}
+    <div class="cal-month">
+      <p class="cal-month-title">{{ grid.monthName }}</p>
+      <div class="cal-grid">
+
+        {% set dows = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"] %}
+        {% for dow in dows %}
+          <div class="cal-dow{% if loop.index >= 6 %} weekend{% endif %}">{{ dow }}</div>
+        {% endfor %}
+
+        {% for week in grid.weeks %}
+          {% for cell in week %}
+            {% if cell.day == null %}
+              <div class="cal-cell empty"></div>
+            {% else %}
+              {% set colIndex = loop.index %}
+              {% set isWeekend = (colIndex == 6 or colIndex == 7) %}
+              {% set isToday = (cell.iso == today) %}
+              {% set isPast = (cell.iso < today) %}
+              {% set hasEvents = (cell.events | length > 0) %}
+              <div class="cal-cell{% if isWeekend %} weekend-cell{% endif %}{% if isToday %} today{% elif isPast %} past{% endif %}{% if hasEvents %} has-events{% endif %}">
+                <div class="cal-day-num">{{ cell.day }}</div>
+                {% for ev in cell.events %}
+                  <span class="cal-event-badge" title="{{ ev }}">{{ ev }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</section>

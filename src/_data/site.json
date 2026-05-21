@@ -1,0 +1,12 @@
+{
+  "title": "Solitarian",
+  "description": "The unofficial, completely unauthorised company website",
+  "url": "https://Solitarian.dk",
+  "author": "MasterAlerion | Copilot",
+  "nav": [
+    { "label": "Home",        "url": "/" },
+    { "label": "Articles",    "url": "/posts/" },
+    { "label": "Calendar",    "url": "/calendar/" },
+    { "label": "Canteen",     "url": "/canteen/" }
+  ]
+}
