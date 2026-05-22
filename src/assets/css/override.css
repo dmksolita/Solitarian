@@ -72,6 +72,11 @@ ul.actions .button.primary:hover {
   margin-right: auto;
 }
 
+#footer .copyright {
+  margin-top: 1em !important;
+  margin-bottom: 0.5em !important;
+}
+
 /* ── links Footer */ ─────────────────────────────────
 #footer a { color: #f26419; }
 #footer a:hover { color: #d4540e; }
