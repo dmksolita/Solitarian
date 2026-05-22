@@ -45,6 +45,7 @@ description: This week's meat and vegetarian options — straight from the kitch
                 src="{{ item.meatImage }}"
                 alt="{{ item.meat }}"
                 loading="lazy"
+                data-caption="{{ item.meat }}"
                 onerror="this.setAttribute('data-hidden','');this.style.display='none'">
             </div>
 
@@ -59,6 +60,7 @@ description: This week's meat and vegetarian options — straight from the kitch
                 src="{{ item.vegiImage }}"
                 alt="{{ item.vegi }}"
                 loading="lazy"
+                data-caption="{{ item.vegi }}"
                 onerror="this.setAttribute('data-hidden','');this.style.display='none'">
             </div>
 
@@ -73,3 +75,11 @@ description: This week's meat and vegetarian options — straight from the kitch
 
   </div>
 </section>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <p id="lightbox-caption"></p>
+</div>
+
+<script src="/assets/js/lightbox.js"></script>

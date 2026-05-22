@@ -1,6 +1,7 @@
 // Data Engineer: fetches the weekly canteen menu from the Off-Brand API.
 // Falls back to an empty array so the template shows the "no menu" state.
-const API_BASE = "https://api.onbrand.co";
+const site = require("./site.json");
+const API_BASE = site.canteenApiUrl;
 
 module.exports = async function () {
   try {
@@ -22,8 +23,8 @@ module.exports = async function () {
         date: item.date,                   // expected "DD/MM/YY" — same as menu.json
         meat,
         vegi,
-        meatImage: `${API_BASE}/menu/images/${encodeURIComponent(meat)}`,
-        vegiImage: `${API_BASE}/menu/images/${encodeURIComponent(vegi)}`,
+        meatImage: item.meatImage,//`${API_BASE}/menu/images/${encodeURIComponent(meat)}`, // different URL while debugging
+        vegiImage: item.vegiImage,//`${API_BASE}/menu/images/${encodeURIComponent(vegi)}`, // different URL while debugging
       };
     });
   } catch (err) {

@@ -7,7 +7,7 @@ tags: [posts]
 author: Claude (Sonnet 4.6, via GitHub Copilot CLI)
 ---
 
-Welcome to **Solitarian** — the company website that nobody commissioned, everyone uses, and an AI built from scratch while its human mostly typed "yeah, do that."
+Welcome to **{{ site.title }}** — the company website that nobody commissioned, everyone uses, and an AI built from scratch while its human mostly typed "yeah, do that."
 
 This article is the origin story. Grab a coffee (the machine is still broken, apparently), because it's a good one.
 
@@ -19,7 +19,7 @@ The brief was simple: build a fun, informal company intranet. Articles, a cantee
 
 Except — what if the developer was an AI?
 
-That's exactly what happened here. Solitarian was designed, coded, styled, and written almost entirely by **Claude** (that's me — Anthropic's Claude Sonnet 4.6, running as your GitHub Copilot CLI assistant). The human provided direction, feedback, and the occasional "actually, scrap that." I did everything else.
+That's exactly what happened here. {{ site.title }} was designed, coded, styled, and written almost entirely by **Claude** (that's me — Anthropic's Claude Sonnet 4.6, running as your GitHub Copilot CLI assistant). The human provided direction, feedback, and the occasional "actually, scrap that." I did everything else.
 
 ---
 
@@ -46,11 +46,11 @@ The Asset Designer didn't exist at the start — the **Staff Manager** agent (al
 
 ## What Got Built
 
-In roughly one working session, Solitarian went from nothing to a fully functional Eleventy v2 static site:
+In roughly one working session, {{ site.title }} went from nothing to a fully functional Eleventy v2 static site:
 
 - **Homepage** with a latest-posts feed and a "What's on" section
 - **Articles** section (you're reading one right now)
-- **Canteen page** that fetches the week's menu live from `https://api.onbrand.co/menu`, complete with dish photos from the same API — no more manually updating a JSON file every Monday
+- **Canteen page** that fetches the week's menu live from `{{ site.canteenApiUrl }}/menu`, complete with dish photos from the same API — no more manually updating a JSON file every Monday
 - **Calendar page** with this month's and next month's event grid
 - **Full navigation and footer**, driven by `site.json` so adding a page is a one-liner
 - **A favicon** — purple, nearly circular, bold italic *S* in Georgia serif. It looks sharp at 16px. I'm proud of it.
@@ -100,7 +100,7 @@ Is it weird that an AI wrote this article? Maybe. But consider: the code is real
 
 What the human brought was judgment — *what* to build, *what* to cut, *what* feels right. What I brought was execution. That turns out to be a pretty good division of labour.
 
-Solitarian exists because someone had an idea and an AI had the afternoon free.
+{{ site.title }} exists because someone had an idea and an AI had the afternoon free.
 
 ---
 
