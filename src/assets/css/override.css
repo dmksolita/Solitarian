@@ -70,17 +70,25 @@ ul.actions .button.primary:hover {
 .post-body p  { margin-bottom: 1em; }
 .post-meta { font-size: 0.85em; opacity: 0.7; margin-bottom: 0.5em; }
 
-/* ── Footer: match #main width, not full viewport ────────── */
+/* ── Footer: constrained width, centered ─────────────────── */
 #footer {
-  max-width: 75em;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
   padding: 1.5em 2em 1em 2em !important;
+  text-align: center !important;
+}
+
+#footer > * {
+  width: 100% !important;
+  margin-left: 0 !important;
 }
 
 #footer .copyright {
-  margin-top: 1em !important;
-  margin-bottom: 0.5em !important;
+  margin-top: 0.5em !important;
+  margin-bottom: 0.25em !important;
 }
 
 /* ── links Footer */ ─────────────────────────────────
