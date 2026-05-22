@@ -1,5 +1,10 @@
 /* override.css — brand colours + fixes on top of Stellar */
 
+/* ── Header: tight padding ───────────────────────────────── */
+#header {
+  padding: 1em 2em 0.5em 2em !important;
+}
+
 /* ── Site title: bigger, not a link ─────────────────────── */
 #header h1 {
   font-size: 2.5em;
@@ -70,6 +75,7 @@ ul.actions .button.primary:hover {
   max-width: 75em;
   margin-left: auto;
   margin-right: auto;
+  padding: 1.5em 2em 1em 2em !important;
 }
 
 #footer .copyright {
