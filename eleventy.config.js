@@ -5,6 +5,7 @@ module.exports = function (eleventyConfig) {
   // --- Passthrough copies ---
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy({ "HTML_TEMPLATE/images": "assets/images" });
+  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // --- Collections ---
   eleventyConfig.addCollection("posts", (api) =>
