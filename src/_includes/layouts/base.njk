@@ -39,18 +39,20 @@
       {{ content | safe }}
     </div>
 
-    <footer id="footer">
-      <section>
-        <h2>{{ site.title }}</h2>
-        <p>{{ site.description }}</p>
-      </section>
-      <section>
-        <h2>Around the office</h2>
-        <dl class="alt">
-          <dt>Articles</dt><dd><a href="/posts/">Latest posts</a></dd>
-        </dl>
-      </section>
-      <p class="copyright">&copy; {{ site.title }}. Probably not endorsed by HR. Template by <a href="https://html5up.net" rel="noopener noreferrer" target="_blank">HTML5Up</a>.</p>
+    {% include "partials/footer.njk" %}
+
+  </div>
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/jquery.scrollex.min.js"></script>
+  <script src="/assets/js/jquery.scrolly.min.js"></script>
+  <script src="/assets/js/browser.min.js"></script>
+  <script src="/assets/js/breakpoints.min.js"></script>
+  <script src="/assets/js/util.js"></script>
+  <script src="/assets/js/stellar.js"></script>
+</body>
+</html>
+opener noreferrer" target="_blank">HTML5Up</a>.</p>
     </footer>
 
   </div>
