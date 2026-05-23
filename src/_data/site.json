@@ -3,7 +3,7 @@
   "description": "The unofficial, completely unauthorised company website",
   "url": "https://solitarian.dk",
   "author": "MasterAlerion | Copilot",
-  "canteenApiUrl": "http://localhost:3000",
+  "canteenApiUrl": "http://api.solitarian.dk",
   "nav": [
     { "label": "Home",        "url": "/" },
     { "label": "Articles",    "url": "/posts/" },

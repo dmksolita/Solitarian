@@ -15,18 +15,26 @@ module.exports = async function () {
       ? raw
       : raw.menu ?? raw.items ?? raw.data ?? [];
 
-    return items.map((item) => {
-      const meat = item.meat ?? item.mainDish ?? item.main ?? "";
-      const vegi = item.vegi ?? item.vegetarian ?? item.veggie ?? item.vegDish ?? "";
+    // Group flat per-dish items by date, then build one card per day
+    const byDate = {};
+    for (const item of items) {
+      if (!byDate[item.date]) byDate[item.date] = {};
+      if (item.type === "meat") {
+        byDate[item.date].meat = item.name;
+        byDate[item.date].meatImage = `${API_BASE}/images/${item.dish_id}.png`;
+      } else if (item.type === "veggie") {
+        byDate[item.date].vegi = item.name;
+        byDate[item.date].vegiImage = `${API_BASE}/images/${item.dish_id}.png`;
+      }
+    }
 
-      return {
-        date: item.date,                   // expected "DD/MM/YY" — same as menu.json
-        meat,
-        vegi,
-        meatImage: item.meatImage,//`${API_BASE}/menu/images/${encodeURIComponent(meat)}`, // different URL while debugging
-        vegiImage: item.vegiImage,//`${API_BASE}/menu/images/${encodeURIComponent(vegi)}`, // different URL while debugging
-      };
-    });
+    return Object.entries(byDate).map(([date, dishes]) => ({
+      date,
+      meat: dishes.meat ?? "",
+      vegi: dishes.vegi ?? "",
+      meatImage: dishes.meatImage ?? "",
+      vegiImage: dishes.vegiImage ?? "",
+    }));
   } catch (err) {
     console.warn(`[menu] Could not fetch menu from API: ${err.message}`);
     return [];
