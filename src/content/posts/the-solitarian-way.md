@@ -7,7 +7,7 @@ tags: [posts]
 author: The Solitarian Team
 ---
 
-If you spend even a little time at Solitarian, you start to notice the same thing in small everyday moments.
+If you spend even a little time at Solita, you start to notice the same thing in small everyday moments.
 
 Someone is stuck on a client problem and two people jump into the call, not because it is “their area” but because it matters. A teammate shares a half-formed idea in chat and, instead of silence or point-scoring, people help shape it into something stronger. Someone new joins and, within minutes, they are part of the conversation.
 
@@ -21,7 +21,7 @@ When a deadline is close, people lean in. When a client challenge gets messy, no
 
 ## Help is never awkward here
 
-One of the nicest things about Solitarian is how normal it is to ask for help — and how normal it is to offer it.
+One of the nicest things about Solita is how normal it is to ask for help — and how normal it is to offer it.
 
 Sometimes that is a quick message: “Can you sanity-check this before I send it?” Sometimes it is someone staying on a call for ten extra minutes because they can see you are nearly there. Sometimes it is a colleague sharing what they learned the hard way so you do not have to learn it twice.
 
@@ -31,13 +31,13 @@ There is a lot of kindness in that. Not performative kindness. Real, practical, 
 
 We are not afraid of honest conversations. Some of our best work comes from them.
 
-At Solitarian, constructive discussion does not mean everyone politely nods and moves on. It means people bring different views, ask good questions, challenge ideas, and stay respectful while doing it. You can say, “I am not convinced yet,” and trust that the room will hear curiosity, not conflict.
+At Solita, constructive discussion does not mean everyone politely nods and moves on. It means people bring different views, ask good questions, challenge ideas, and stay respectful while doing it. You can say, “I am not convinced yet,” and trust that the room will hear curiosity, not conflict.
 
 That openness matters. It means problems get surfaced early, ideas get stronger, and people feel heard.
 
 ## Everyone should feel they belong
 
-We want Solitarian to be a place where people can show up as themselves. Your background, identity, accent, path into the industry, or way of thinking should never be a barrier to belonging here.
+We want Solita to be a place where people can show up as themselves. Your background, identity, accent, path into the industry, or way of thinking should never be a barrier to belonging here.
 
 The goal is not just to be welcoming on paper. It is to create an environment where people are included in practice: invited in, listened to, and valued for what they bring.
 
