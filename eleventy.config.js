@@ -52,7 +52,7 @@ module.exports = function (eleventyConfig) {
       const iso = `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
       const dayEvents = parsedEvents
         .filter(e => e.iso === iso)
-        .map(e => e.title);
+        .map(e => ({ title: e.title, category: e.category, color: e.color }));
       cells.push({ day: d, iso, events: dayEvents });
     }
 
@@ -73,30 +73,40 @@ module.exports = function (eleventyConfig) {
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
   });
 
-  function prepareEvents(events) {
+  function prepareEvents(events, categories) {
+    const catMap = {};
+    if (Array.isArray(categories)) categories.forEach(c => { catMap[c.id] = c.color; });
     return events.map(e => {
       const d = parseEventDateStr(e.date);
       return {
         title: e.title,
+        category: e.category ?? "",
+        color: catMap[e.category] ?? "#5a9ab5",
         iso: `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`
       };
     });
   }
 
-  eleventyConfig.addFilter("thisMonthGrid", (events) => {
+  eleventyConfig.addFilter("thisMonthGrid", (events, categories) => {
     const now = new Date();
-    return buildMonthGrid(now.getFullYear(), now.getMonth(), prepareEvents(events));
+    return buildMonthGrid(now.getFullYear(), now.getMonth(), prepareEvents(events, categories));
   });
 
-  eleventyConfig.addFilter("nextMonthGrid", (events) => {
+  eleventyConfig.addFilter("nextMonthGrid", (events, categories) => {
     const now = new Date();
     const y = now.getMonth() === 11 ? now.getFullYear() + 1 : now.getFullYear();
     const m = (now.getMonth() + 1) % 12;
-    return buildMonthGrid(y, m, prepareEvents(events));
+    return buildMonthGrid(y, m, prepareEvents(events, categories));
   });
 
   eleventyConfig.addFilter("monthGrid", (events, year, month) => {
     return buildMonthGrid(year, month, prepareEvents(events));
+  });
+
+  // --- Calendar helpers ---
+  eleventyConfig.addFilter("getCategoryColor", (categories, id) => {
+    const cat = (categories || []).find(c => c.id === id);
+    return cat ? cat.color : "#5a9ab5";
   });
 
   // --- Menu helpers ---

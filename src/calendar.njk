@@ -5,7 +5,7 @@ description: Upcoming events and happenings around the office.
 ---
 
 {% set today = "" | todayISO %}
-{% set grids = [events | thisMonthGrid, events | nextMonthGrid] %}
+{% set grids = [events | thisMonthGrid(categories), events | nextMonthGrid(categories)] %}
 
 <section class="main">
   <div class="cal-wrapper">
@@ -35,10 +35,11 @@ description: Upcoming events and happenings around the office.
               {% set isToday = (cell.iso == today) %}
               {% set isPast = (cell.iso < today) %}
               {% set hasEvents = (cell.events | length > 0) %}
-              <div class="cal-cell{% if isWeekend %} weekend-cell{% endif %}{% if isToday %} today{% elif isPast %} past{% endif %}{% if hasEvents %} has-events{% endif %}">
+              {% set firstColor = cell.events[0].color or "#5a9ab5" %}
+              <div class="cal-cell{% if isWeekend %} weekend-cell{% endif %}{% if isToday %} today{% elif isPast %} past{% endif %}{% if hasEvents %} has-events{% endif %}"{% if hasEvents %} style="--first-event-color: {{ firstColor }}"{% endif %}>
                 <div class="cal-day-num">{{ cell.day }}</div>
                 {% for ev in cell.events %}
-                  <span class="cal-event-badge" title="{{ ev }}">{{ ev }}</span>
+                  <span class="cal-event-badge" title="{{ ev.title }}" style="--event-color: {{ ev.color }}">{{ ev.title }}</span>
                 {% endfor %}
               </div>
             {% endif %}
