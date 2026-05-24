@@ -1,5 +1,13 @@
 
+Write better readme
+- Sould include information about ownership (Solita)
+- How to contribure
+- Contact information
+- 
 
-MUST INCLUDE HTML5UP REFERENCE
+Move event categories to the event json, so they are always in view when adding events
 
-Sould include information about ownership (Solita)
+
+Add area for games / JS showcases(?)
+
+Area for game scoreboards (Foosball, Guitarhero)
