@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 1 * * *'   # nightly at 01:00 UTC — rebuilds dynamic data (canteen menu, etc.)
   workflow_dispatch:
 
 permissions:
