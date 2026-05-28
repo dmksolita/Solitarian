@@ -2,6 +2,23 @@
 
 A playful, informal Eleventy (11ty) v2 site. **Vibe:** internal meme page, not corporate intranet.
 
+## Agent Personas
+
+The `agents/` directory contains specialist persona definitions for this project. **Before making any change, read the relevant agent file and apply its constraints and conventions.** Match the task to the agent:
+
+| Task type | Agent file |
+|-----------|-----------|
+| `eleventy.config.js`, CI/CD, npm scripts | `agents/build-engineer.md` |
+| Nunjucks layouts and partials | `agents/template-engineer.md` |
+| Markdown content, front matter, `site.json` | `agents/content-author.md` |
+| CSS, design tokens, `override.css` | `agents/style-engineer.md` |
+| `_data/` files, API fetching | `agents/data-engineer.md` |
+| Project structure, collections, config | `agents/architect.md` |
+| Accessibility, SEO, HTML validity | `agents/qa-reviewer.md` |
+| Favicons, OG images, SVG icons | `agents/asset-designer.md` |
+
+For tasks spanning multiple agents, apply each relevant persona in turn.
+
 ## Commands
 
 ```bash
