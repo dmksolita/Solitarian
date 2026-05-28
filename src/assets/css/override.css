@@ -3,6 +3,7 @@
 /* ── Header: tight padding ───────────────────────────────── */
 #header {
   padding: 1em 2em 0.5em 2em !important;
+  position: relative;
 }
 
 /* ── Site title: bigger, not a link ─────────────────────── */
@@ -110,4 +111,111 @@ ul.actions .button.primary:hover {
 .stat-btn {
   margin-top: .75em;
   display: inline-block;
+}
+
+/* ── Burger menu button (mobile only) ────────────────────── */
+#nav-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 736px) {
+
+  #nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2rem;
+    height: 1.5rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10002;
+  }
+
+  .burger-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #636363;
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.25s ease, opacity 0.2s ease, background-color 0.2s ease;
+  }
+
+  #nav-toggle[aria-expanded="true"] .burger-bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+  }
+  #nav-toggle[aria-expanded="true"] .burger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #nav-toggle[aria-expanded="true"] .burger-bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+  }
+
+  #nav-toggle[aria-expanded="true"] .burger-bar,
+  #nav-toggle:hover .burger-bar {
+    background: #f26419;
+  }
+
+  /* ── Mobile nav open state ────────────────────────────── */
+  #nav.is-open {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10001;
+    padding: 4.5rem 1.5rem 1.5rem !important;
+    background: rgba(247, 247, 247, 0.98) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 0 !important;
+  }
+
+  #nav.is-open ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #nav.is-open ul li {
+    display: block;
+    margin: 0;
+    width: 100%;
+  }
+
+  #nav.is-open ul li a {
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1.1em;
+    border-radius: 6px;
+    text-align: left;
+    height: auto;
+    line-height: 1.4;
+  }
+
+  #nav.is-open ul li a:hover,
+  #nav.is-open ul li a.active {
+    background-color: rgba(242, 100, 25, 0.1) !important;
+    color: #f26419 !important;
+  }
+
+  /* ── Push main down when nav is open ─────────────────── */
+  #nav.is-open + #main {
+    padding-top: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .burger-bar { transition: none; }
+  }
 }
