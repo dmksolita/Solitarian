@@ -10,12 +10,29 @@ A lighthearted internal site featuring office articles, a team calendar, and a l
 
 ## Table of Contents
 
+- [License](#license)
 - [About](#about)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Adding Content](#adding-content)
 - [Deployment](#deployment)
-- [License](#license)
+
+---
+
+## License
+
+### Project code
+
+Copyright © Solita Denmark. All rights reserved.
+
+This software and its source code are the exclusive property of **Solita Denmark**. No part of this codebase may be used, copied, modified, merged, published, distributed, sublicensed, or sold — in whole or in part — without **express written permission** from Solita Denmark.
+
+For enquiries, contact the maintainers via the internal Slack or raise a GitHub issue.
+
+### Stellar HTML5 UP theme
+
+The CSS base (`stellar.css` and associated assets) is sourced from [Stellar by HTML5 UP](https://html5up.net/stellar) and is licensed under the [Creative Commons Attribution 3.0 License](https://html5up.net/license). Attribution: **HTML5 UP** (html5up.net · @ajlkn).
+ribution: **HTML5 UP** (html5up.net · @ajlkn).
 
 ---
 
@@ -104,18 +121,3 @@ Deployments are handled by GitHub Actions and require no manual steps.
 The canteen menu is fetched at build time from the Off-Brand API (`canteenApiUrl` in `src/_data/site.json`). If the API is unavailable, the canteen page shows a graceful "no menu" state.
 
 ---
-
-## License
-
-### Project code
-
-Copyright © Solita Denmark. All rights reserved.
-
-This software and its source code are the exclusive property of **Solita Denmark**. No part of this codebase may be used, copied, modified, merged, published, distributed, sublicensed, or sold — in whole or in part — without **express written permission** from Solita Denmark.
-
-For enquiries, contact the maintainers via the internal Slack or raise a GitHub issue.
-
-### Stellar HTML5 UP theme
-
-The CSS base (`stellar.css` and associated assets) is sourced from [Stellar by HTML5 UP](https://html5up.net/stellar) and is licensed under the [Creative Commons Attribution 3.0 License](https://html5up.net/license). Attribution: **HTML5 UP** (html5up.net · @ajlkn).
-ribution: **HTML5 UP** (html5up.net · @ajlkn).
