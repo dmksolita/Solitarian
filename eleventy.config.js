@@ -113,9 +113,9 @@ module.exports = function (eleventyConfig) {
   // Sentence-cases a dish name: first word capitalised, rest lowercase.
   eleventyConfig.addFilter("dishName", (str) => {
     if (!str) return str;
-    return str
-      .toLowerCase()
-      .split(" ")
+    const words = str.toLowerCase().split(" ");
+    if (words.length === 1 && words[0].length <= 3) return words[0].toUpperCase();
+    return words
       .map((word, i) => (i === 0 || word.length > 3)
         ? word.charAt(0).toUpperCase() + word.slice(1)
         : word)
