@@ -109,6 +109,19 @@ module.exports = function (eleventyConfig) {
     return cat ? cat.color : "#5a9ab5";
   });
 
+  // --- Dish name formatting ---
+  // Sentence-cases a dish name: first word capitalised, rest lowercase.
+  eleventyConfig.addFilter("dishName", (str) => {
+    if (!str) return str;
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word, i) => (i === 0 || word.length > 3)
+        ? word.charAt(0).toUpperCase() + word.slice(1)
+        : word)
+      .join(" ");
+  });
+
   // --- Menu helpers ---
   eleventyConfig.addFilter("menuDayInfo", (dateStr) => {
     // dateStr format: "DD/MM/YY"

@@ -39,13 +39,13 @@ description: This week's meat and vegetarian options — straight from the kitch
               <p class="menu-dish-label">
                 <span class="icon solid fa-drumstick-bite" aria-hidden="true"></span> Meat
               </p>
-              <p class="menu-dish-name">{{ item.meat }}</p>
+              <p class="menu-dish-name">{{ item.meat | dishName }}</p>
               <img
                 class="menu-dish-img"
                 src="{{ item.meatImage }}"
-                alt="{{ item.meat }}"
+                alt="{{ item.meat | dishName }}"
                 loading="lazy"
-                data-caption="{{ item.meat }}"
+                data-caption="{{ item.meat | dishName }}"
                 onerror="this.setAttribute('data-hidden','');this.style.display='none'">
             </div>
 
@@ -54,13 +54,13 @@ description: This week's meat and vegetarian options — straight from the kitch
               <p class="menu-dish-label">
                 <span class="icon solid fa-leaf" aria-hidden="true"></span> Vegetarian
               </p>
-              <p class="menu-dish-name">{{ item.vegi }}</p>
+              <p class="menu-dish-name">{{ item.vegi | dishName }}</p>
               <img
                 class="menu-dish-img"
                 src="{{ item.vegiImage }}"
-                alt="{{ item.vegi }}"
+                alt="{{ item.vegi | dishName }}"
                 loading="lazy"
-                data-caption="{{ item.vegi }}"
+                data-caption="{{ item.vegi | dishName }}"
                 onerror="this.setAttribute('data-hidden','');this.style.display='none'">
             </div>
 
