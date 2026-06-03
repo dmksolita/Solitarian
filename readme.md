@@ -27,12 +27,11 @@ Copyright © Solita Denmark. All rights reserved.
 
 This software and its source code are the exclusive property of **Solita Denmark**. No part of this codebase may be used, copied, modified, merged, published, distributed, sublicensed, or sold — in whole or in part — without **express written permission** from Solita Denmark.
 
-For enquiries, contact the maintainers via the internal Slack or raise a GitHub issue.
+For enquiries, contact the maintainer (DMK) via the internal Teams or raise a GitHub issue. 
 
 ### Stellar HTML5 UP theme
 
 The CSS base (`stellar.css` and associated assets) is sourced from [Stellar by HTML5 UP](https://html5up.net/stellar) and is licensed under the [Creative Commons Attribution 3.0 License](https://html5up.net/license). Attribution: **HTML5 UP** (html5up.net · @ajlkn).
-ribution: **HTML5 UP** (html5up.net · @ajlkn).
 
 ---
 

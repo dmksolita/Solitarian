@@ -1,10 +1,10 @@
 
 
-Move event categories to the event json, so they are always in view when adding events
+Move event categories to the event json, so they are always in view when adding events?
 
 
 Add area for games / JS showcases(?)
-JS Christmas cards :O
+JS Christmas cards 🎅
 - Can we make it so anyone can add JS files to be executed on the project, to add items/features? 
 - So we load any script in "Some folder". We need to verify that the scripts are legit, and comming from Solita
 - Rules for the script: 
