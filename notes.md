@@ -4,15 +4,15 @@ Calendar should NOT be public
 - SSO, only for Solitans
 - May require different hosting (Ex. Azure)
 
-We need permission to publish menu
-- Ask Anja, and get permission, in writing
-
 Include other Solita Locations
 - If they can expose an API with menu and images, we can incorporate them
 
 Include Drink and Friday Bar 
 
+Implement API key: add MENU_API_KEY as a repository secret under Settings → Secrets and variables → Actions.
 
+Update Backend API:
+- Do not include text on the images
 
 
 

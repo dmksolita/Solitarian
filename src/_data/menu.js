@@ -2,10 +2,12 @@
 // Falls back to an empty array so the template shows the "no menu" state.
 const site = require("./site.json");
 const API_BASE = site.canteenApiUrl;
+const API_KEY  = process.env.MENU_API_KEY;
 
 module.exports = async function () {
   try {
-    const res = await fetch(`${API_BASE}/menu`);
+    const headers = API_KEY ? { Authorization: `Bearer ${API_KEY}` } : {};
+    const res = await fetch(`${API_BASE}/menu`, { headers });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const raw = await res.json();
