@@ -2,9 +2,22 @@
 
 A playful, informal Eleventy (11ty) v2 site. **Vibe:** internal meme page, not corporate intranet.
 
+## Repo layout
+
+```
+/
+ Web Project/      ← the Eleventy site (all web work happens here)
+ agents/           ← agent persona definitions (not part of the build)
+ IAC/              ← infrastructure-as-code (planned; currently sparse)
+ .env.example      ← copy to .env for local dev
+ notes.md          ← product pipeline / roadmap
+```
+
+**All Eleventy commands must be run from `Web Project/`, not the repo root.**
+
 ## Agent Personas
 
-The `agents/` directory contains specialist persona definitions for this project. **Before making any change, read the relevant agent file and apply its constraints and conventions.** Match the task to the agent:
+The `agents/` directory (at the repo root) contains specialist persona definitions. **Before making any change, read the relevant agent file and apply its constraints and conventions.** Match the task to the agent:
 
 | Task type | Agent file |
 |-----------|-----------|
@@ -16,10 +29,13 @@ The `agents/` directory contains specialist persona definitions for this project
 | Project structure, collections, config | `agents/architect.md` |
 | Accessibility, SEO, HTML validity | `agents/qa-reviewer.md` |
 | Favicons, OG images, SVG icons | `agents/asset-designer.md` |
+| Team member records, staff data | `agents/staff-manager.md` |
 
 For tasks spanning multiple agents, apply each relevant persona in turn.
 
 ## Commands
+
+Run from `Web Project/`:
 
 ```bash
 npm start        # dev server with live-reload at http://localhost:8080
@@ -27,6 +43,20 @@ npm run build    # static build → _site/
 ```
 
 No test or lint commands exist. Deployed to GitHub Pages automatically on push to `main`.
+
+## CI/CD
+
+`.github/workflows/deploy.yml` runs `npm ci` and `npm run build`. These steps must execute from `Web Project/` (where `package.json` lives). If editing the workflow, ensure a `working-directory: Web Project/` default is set, or prefix commands with `cd "Web Project" &&`. The artifact path is `_site` (relative to the build working directory).
+
+Triggers: push to `main`, nightly cron at 01:00 UTC (to refresh canteen menu), manual dispatch.
+
+## Environment variables
+
+Copy `.env.example` to `.env` (never commit `.env`):
+
+| Variable | Purpose |
+|----------|---------|
+| `MENU_API_KEY` | Bearer token for the canteen API. Omit to fetch without auth (unauthenticated staging). In CI/CD this is stored as the `MENU_API_KEY` repository secret. |
 
 ## Architecture
 
@@ -42,12 +72,13 @@ Eleventy v2 SSG with Nunjucks templates. Source in `src/`, output in `_site/`.
 - `parseEventDate` / `todayISO` — helpers for event date handling
 - `getCategoryColor(categories, id)` — looks up a category color by id from `categories.json`
 - `menuDayInfo(dateStr)` — parses a `DD/MM/YY` date string into `{ iso, slug, dayName, displayDate }`
+- `dishName(str)` — sentence-cases a dish name (first word + words >3 chars capitalised)
 
 **Global data (`src/_data/`):**
 - `site.json` — site title, description, URL, nav links, and `canteenApiUrl`. Adding a nav item here adds it everywhere.
 - `events.json` — calendar events. **Date format is `DD/MM/YY`** (not ISO), parsed by `parseEventDateStr` in the config.
 - `categories.json` — event categories with `{ id, name, color }`. Used by the calendar and `getCategoryColor` filter.
-- `menu.js` — **async JS data file** that fetches the weekly canteen menu from `canteenApiUrl` at build time. Falls back to `[]` on failure so the canteen page degrades gracefully. Accepts both a bare array and envelope shapes (`{ menu, items, data }`).
+- `menu.js` — **async JS data file** that fetches the weekly canteen menu from `canteenApiUrl` at build time. The API returns flat per-dish items `{ date, type: "meat"|"veggie", name, dish_id }`, grouped by date into `{ date, meat, vegi, meatImage, vegiImage }` (one object per day). Image URLs are `${API_BASE}/images/${dish_id}.png`. Accepts both a bare array and envelope shapes (`{ menu, items, data }`). Falls back to `[]` on failure.
 
 **Collections** (defined in `eleventy.config.js`, sorted newest-first):
 | Key | Source glob | Notes |
@@ -55,7 +86,9 @@ Eleventy v2 SSG with Nunjucks templates. Source in `src/`, output in `_site/`.
 | `posts` | `src/content/posts/**/*.md` | General articles |
 | `latest` | `src/content/**/*.md` | Top 5 across all content types |
 
-The `agents/` directory contains agent persona definitions (markdown). It is **not part of the Eleventy build** — Eleventy never processes it.
+> `Web Project/ARCHITECTURE.md` references `foosball` and `friday-bar` content types that are **not currently implemented** — only the `posts` collection exists. Treat that file as aspirational.
+
+The `agents/` directory is **not part of the Eleventy build** — Eleventy never processes it.
 
 ## Content Front Matter
 
