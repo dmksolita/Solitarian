@@ -1,0 +1,43 @@
+trigger:
+  branches:
+    include:
+      - main
+
+schedules:
+  - cron: '0 1 * * *'
+    displayName: Nightly rebuild (canteen menu)
+    branches:
+      include:
+        - main
+    always: true   # run even when no code has changed
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  nodeVersion: '20'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(nodeVersion)
+    displayName: Install Node.js
+
+  - script: npm ci
+    workingDirectory: Web Project
+    displayName: Install dependencies
+
+  - script: npm run build
+    workingDirectory: Web Project
+    displayName: Build site
+    env:
+      MENU_API_KEY: $(MENU_API_KEY)
+
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: Web Project
+      output_location: _site    # relative to app_location → Web Project/_site
+      skip_app_build: true
+    env:
+      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+    displayName: Deploy to Azure Static Web Apps

@@ -1,0 +1,12 @@
+# Copy this file to terraform.tfvars and fill in the values.
+# terraform.tfvars is gitignored — never commit it.
+
+tenant_id           = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # az account list --output table → TenantId column
+subscription_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # az account list --output table → SubscriptionId column
+location            = "West Europe"
+resource_group_name = "solitarian-rg"
+app_name            = "solitarian"          # must be globally unique in Azure
+sku_tier            = "Free"
+
+# Uncomment once your DNS is ready:
+# custom_domain = "solitarian.dk"

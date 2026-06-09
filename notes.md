@@ -11,6 +11,7 @@
 
 ### Update Backend API
 - Do not include text on the images
+- Only respond when API_KEY included
 
 ### Move to Azure Repository and hosting
 - Azure Devops Repo
