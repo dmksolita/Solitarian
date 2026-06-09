@@ -18,6 +18,7 @@
 - Hosting on Azure Portal
 - IAC: Terraform, or similar to setup hosting, domain, SSL, etc. 
 - Pipelines to run IAC and build & publish website
+- Protect routes that are not public (Ex. Callendar) with Entra ID
 
 
 ## Future plans
