@@ -1,65 +1,85 @@
 # Architecture — Off-Brand Co.
 
 ## Project Overview
-A fun, lighthearted, off-brand company website. Content includes short articles loosely related
-to workplace life: a foosball scoreboard, friday bar reviews, and general office nonsense.
+
+A fun, lighthearted internal company website. Content is short articles about office life and general workplace nonsense.
 
 **Vibe:** playful, informal, slightly cheeky — think internal meme page, not corporate intranet.
 
 ---
 
+## Repository Layout
+
+```
+/                              ← repo root
+ .github/workflows/         ← CI/CD (deploys from Web Project/)
+ Web Project/               ← the Eleventy site (all build work happens here)
+   ├── eleventy.config.js
+   ├── package.json
+   ├── ARCHITECTURE.md
+   ├── HTML_TEMPLATE/images/ copied to assets/images/ at build time  
+   └── src/
+ agents/                    ← agent persona definitions (not built)
+ IAC/                       ← infrastructure-as-code (planned)
+ notes.md                   ← product pipeline / roadmap
+```
+
+**All npm commands must be run from `Web Project/`.**
+
+---
+
 ## Technology
+
 | Concern | Choice |
 |---------|--------|
 | SSG | Eleventy (11ty) v2 |
 | Template language | Nunjucks |
-| CSS | Vanilla CSS with custom properties |
+| CSS base | [Stellar by HTML5 UP](https://html5up.net/stellar) (`stellar.css`) |
+| CSS overrides | Vanilla CSS (`override.css`) |
 | JS | Minimal vanilla JS (no framework) |
 | Source dir | `src/` |
 | Output dir | `_site/` |
+| Hosting | GitHub Pages |
 
 ---
 
 ## Directory Structure
 
 ```
-/
-├── eleventy.config.js
-├── package.json
-├── .gitignore
-├── ARCHITECTURE.md
-├── agents/                      ← agent definitions (not built)
-└── src/
-    ├── _data/
-    │   └── site.json            ← global site metadata + nav
-    ├── _includes/
-    │   ├── layouts/
-    │   │   ├── base.njk         ← root HTML shell
-    │   │   ├── home.njk         ← homepage layout
-    │   │   ├── post.njk         ← article layout
-    │   │   ├── foosball.njk     ← foosball entry layout
-    │   │   └── friday-bar.njk   ← bar review layout
-    │   └── partials/
-    │       ├── header.njk
-    │       ├── footer.njk
-    │       ├── nav.njk
-    │       └── card.njk         ← reusable content card
-    ├── content/
-    │   ├── posts/               ← general articles (.md)
-    │   ├── foosball/            ← match results (.md)
-    │   └── friday-bar/          ← bar reviews (.md)
-    ├── assets/
-    │   ├── css/
-    │   │   ├── main.css         ← entry point (imports all partials)
-    │   │   ├── _tokens.css      ← design tokens
-    │   │   ├── _reset.css
-    │   │   ├── _layout.css
-    │   │   ├── _components.css
-    │   │   └── _utilities.css
-    │   ├── js/
-    │   │   └── main.js
-    │   └── images/
-    └── index.njk                ← homepage
+Web Project/src/
+ _data/
+   ├── site.json            ← global site metadata + nav links
+   ├── events.json          ← calendar events (date format: DD/MM/YY)
+   ├── categories.json      ← event categories { id, name, color }
+   └── menu.js              ← async: fetches canteen menu from API at build time
+ _includes/
+   ├── layouts/
+   │   ├── base.njk         ← root HTML shell (all pages inherit from this)
+ home.njk         ← homepage layout   │   ├─
+   │   └── post.njk         ← article layout
+   └── partials/
+       ├── header.njk
+       ├── nav.njk
+       ├── footer.njk
+       └── card.njk         ← reusable content card
+ assets/
+   └── css/
+       ├── stellar.css      ← base theme (do not edit)
+       ├── override.css     ← brand overrides — the only place to add/change styles
+       ├── noscript.css     ← styles applied when JS is disabled
+       ├── fontawesome-all.min.css
+       ├── _canteen.css     ← canteen page styles (not auto-imported; loaded inline)
+       ├── _calendar.css    ← calendar page styles (not auto-imported; loaded inline)
+       └── main.css         ← legacy entry point (not loaded by base.njk)
+ content/
+   └── posts/               ← general articles (.md)
+       └── index.njk        ← posts listing page
+ index.njk                ← homepage
+ calendar.njk             ← standalone calendar page
+ canteen.njk              ← standalone canteen menu page
+ 404.njk                  ← 404 error page
+ CNAME                    ← custom domain (passthrough)
+ robots.txt               ← (passthrough)
 ```
 
 ---
@@ -69,9 +89,7 @@ to workplace life: a foosball scoreboard, friday bar reviews, and general office
 | Collection key | Glob | Description |
 |----------------|------|-------------|
 | `posts` | `src/content/posts/**/*.md` | General articles, newest first |
-| `foosball` | `src/content/foosball/**/*.md` | Match results, newest first |
-| `fridayBar` | `src/content/friday-bar/**/*.md` | Bar reviews, newest first |
-| `latest` | `src/content/**/*.md` | 5 most recent items across all types |
+| `latest` | `src/content/**/*.md` | 5 most recent items across all content |
 
 ---
 
@@ -81,47 +99,36 @@ to workplace life: a foosball scoreboard, friday bar reviews, and general office
 ```yaml
 title: string           # Page/post title
 description: string     # 120–160 chars, used in meta + cards
-layout: string          # layouts/post.njk | layouts/foosball.njk | layouts/friday-bar.njk
+layout: layouts/post.njk
 date: YYYY-MM-DD
-tags: [string]          # always include the content-type tag: posts | foosball | friday-bar
+tags: [posts]
 ```
 
-### Posts (additional)
+### Posts (additional required)
 ```yaml
 author: string
 ```
 
-### Foosball (additional)
-```yaml
-home_team: string
-away_team: string
-home_score: number
-away_score: number
-mvp: string             # optional
-```
-
-### Friday Bar (additional)
-```yaml
-venue: string
-rating: number          # 1–5
-visited: YYYY-MM-DD
-```
-
 ---
 
-## Design Tokens (brief for Style Engineer)
-- **Background:** near-white `#f9f7f4`
-- **Text:** near-black `#1a1a1a`
-- **Accent:** orange `#f26419`
-- **Accent hover:** darker orange `#d4540e`
-- **Font:** system-ui stack (no external font load)
-- **Spacing scale:** 4px base, multiples of 4
+## CSS Architecture
+
+Only two stylesheets are loaded by `base.njk`:
+1. `stellar.css` — the Stellar HTML5UP base theme (read-only)
+2. `override.css` — all brand and component overrides go here
+
+The `_canteen.css` and `_calendar.css` partials exist for organisational purposes and are loaded by their respective standalone pages. `main.css` is a legacy file and is not active.
+
+**Orange accent:** `#f26419` (hover: `#d4540e`)
 
 ---
 
 ## Conventions
-- All URLs lowercase, hyphen-separated
-- Dates ISO 8601 (`YYYY-MM-DD`)
-- Images: explicit `width`/`height`, `loading="lazy"` on all non-hero images
-- No `!important` except in utilities
-- Mobile-first CSS (`min-width` breakpoints)
+
+- All URLs lowercase, hyphen-separated. Content filenames become URLs.
+- Dates ISO 8601 (`YYYY-MM-DD`) in front matter; events use `DD/MM/YY`.
+- Images: explicit `width`/`height`, `loading="lazy"` on all non-hero images.
+- `onerror="this.setAttribute('data-hidden','');this.style.display='none'"` on all `<img>` tags to silently hide broken images.
+- No `!important` except in `override.css` where it's needed to beat Stellar specificity.
+- Mobile-first CSS (`min-width` breakpoints).
+- Nav changes go in `src/_data/site.json`, not template files.
