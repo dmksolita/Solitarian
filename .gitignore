@@ -1,3 +1,10 @@
 node_modules/
 _site/
 .env
+
+# Terraform
+IAC/terraform/terraform.tfvars
+IAC/terraform/.terraform/
+IAC/terraform/.terraform.lock.hcl
+IAC/terraform/terraform.tfstate
+IAC/terraform/terraform.tfstate.backup
