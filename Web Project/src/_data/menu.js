@@ -6,7 +6,7 @@ const API_KEY  = process.env.MENU_API_KEY;
 
 module.exports = async function () {
   try {
-    const headers = API_KEY ? { Authorization: `Bearer ${API_KEY}` } : {};
+    const headers = API_KEY ? { "x-api-key": API_KEY } : {};
     const res = await fetch(`${API_BASE}/menu`, { headers });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
