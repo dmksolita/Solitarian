@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 1 * * *'   # nightly at 01:00 UTC — rebuilds dynamic data (canteen menu, etc.)
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 permissions:
