@@ -94,8 +94,9 @@
     font-size: 0.95rem;
     font-weight: 600;
     color: #1a1a1a;
-    line-height: 1.35;
+    line-height: 1.35rem;
     margin: 0 0 0.5rem;
+    min-height: 2.7rem;
   }
 
   /* ── Dish image ── */
