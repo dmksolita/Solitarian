@@ -1,8 +1,0 @@
-[
-  { "id": "friday-bar", "name": "Friday Bar",   "color": "#F74032" },
-  { "id": "party",      "name": "Party",        "color": "#F98B01" },
-  { "id": "teamevents", "name": "Team Event",   "color": "#2CAAFF" },
-  { "id": "boardgames", "name": "Board Games",  "color": "#24D57A" },
-  { "id": "other", "name": "Other",  "color": "#FF0080" },
-  { "id": "other-other", "name": "Other other",  "color": "#4A34B3" }
-]
